@@ -16,7 +16,7 @@ interface SaleSuccessViewProps {
 }
 
 const SaleSuccessView = ({ sale, onNewSale, currentUser, settings, onEmailReceiptRequest, onWhatsAppReceiptRequest, shouldAutoPrint, onAutoPrintDone }: SaleSuccessViewProps) => {
-    
+
     const handlePrint = () => {
         window.print();
     };
@@ -62,16 +62,16 @@ const SaleSuccessView = ({ sale, onNewSale, currentUser, settings, onEmailReceip
                         >
                             New Sale
                         </motion.button>
-                         <motion.button
+                        <motion.button
                             onClick={() => onEmailReceiptRequest(sale.id, sale.customerId)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors shadow-md text-lg flex items-center"
                         >
-                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                             Email Receipt
                         </motion.button>
-                         <motion.button
+                        <motion.button
                             onClick={() => onWhatsAppReceiptRequest(sale.id, sale.customerId)}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -86,16 +86,16 @@ const SaleSuccessView = ({ sale, onNewSale, currentUser, settings, onEmailReceip
                             whileTap={{ scale: 0.95 }}
                             className="bg-slate-700 text-white font-bold py-3 px-6 rounded-lg hover:bg-slate-800 transition-colors shadow-md text-lg flex items-center"
                         >
-                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h1v-4a1 1 0 011-1h10a1 1 0 011 1v4h1a2 2 0 002-2v-6a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clipRule="evenodd" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v6a2 2 0 002 2h1v-4a1 1 0 011-1h10a1 1 0 011 1v4h1a2 2 0 002-2v-6a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clipRule="evenodd" /></svg>
                             Print Receipt
                         </motion.button>
                     </div>
                 </div>
 
                 <div className="w-full md:w-96 flex-shrink-0">
-                   <div id="receipt-container">
-                     <Receipt sale={sale} cashierName={currentUser.name} settings={settings} />
-                   </div>
+                    <div id="receipt-container">
+                        <Receipt sale={sale} cashierName={currentUser.name} settings={settings} />
+                    </div>
                 </div>
             </div>
         </div>

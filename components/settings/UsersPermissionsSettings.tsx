@@ -27,7 +27,7 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
         const newPermissions = checked
             ? [...currentPermissions, permission]
             : currentPermissions.filter(p => p !== permission);
-        
+
         props.onUpdateSettings({
             permissions: {
                 ...props.settings.permissions,
@@ -35,12 +35,12 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
             }
         });
     };
-    
+
     const openUserModal = (user?: User) => {
         setEditingUser(user);
         setIsUserModalOpen(true);
     };
-    
+
     const handleSaveUser = (userData: Omit<User, 'id'> | User) => {
         if ('id' in userData) {
             props.onUpdateUser(userData);
@@ -51,7 +51,7 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
     };
 
     const handleDeleteConfirm = () => {
-        if(deletingUser) {
+        if (deletingUser) {
             props.onDeleteUser(deletingUser.id);
             setDeletingUser(null);
         }
@@ -60,11 +60,10 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
     const TabButton: React.FC<{ tab: Tab, label: string }> = ({ tab, label }) => (
         <button
             onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2 text-sm font-semibold rounded-t-md relative transition-colors ${
-                activeTab === tab 
-                ? 'text-emerald-600' 
-                : 'text-slate-600 hover:text-slate-800'
-            }`}
+            className={`px-4 py-2 text-sm font-semibold rounded-t-md relative transition-colors ${activeTab === tab
+                    ? 'text-emerald-600'
+                    : 'text-slate-600 hover:text-slate-800'
+                }`}
         >
             {label}
             {activeTab === tab && (
@@ -76,7 +75,7 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
     const renderUsers = () => (
         <div className="mt-6">
             <div className="flex justify-end mb-4">
-                 <motion.button onClick={() => openUserModal()} whileTap={{ scale: 0.95 }} className="bg-emerald-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors shadow-sm text-sm">
+                <motion.button onClick={() => openUserModal()} whileTap={{ scale: 0.95 }} className="bg-emerald-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors shadow-sm text-sm">
                     Add New User
                 </motion.button>
             </div>
@@ -109,7 +108,7 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
     );
 
     const renderPermissions = () => (
-         <div className="mt-6 overflow-x-auto">
+        <div className="mt-6 overflow-x-auto">
             <div className="rounded-lg shadow-sm border border-slate-200">
                 <table className="w-full text-sm text-left">
                     <thead className="text-xs text-slate-700 uppercase bg-slate-50">
@@ -149,19 +148,19 @@ const UsersPermissionsSettings: React.FC<UsersPermissionsSettingsProps> = (props
             </div>
         </div>
     );
-    
+
     return (
         <div>
             <AnimatePresence>
                 {isUserModalOpen && (
-                    <UserModal 
+                    <UserModal
                         onClose={() => setIsUserModalOpen(false)}
                         onSave={handleSaveUser}
                         user={editingUser}
                     />
                 )}
                 {deletingUser && (
-                     <ConfirmationModal
+                    <ConfirmationModal
                         title={`Delete User ${deletingUser.name}?`}
                         message="Are you sure you want to permanently delete this user? This action cannot be undone."
                         confirmText="Delete"

@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Customer, Sale, Permission } from '../types';
 import CustomerDetailView from './customers/CustomerDetailView';
 import CustomerModal from './customers/CustomerModal';
-import { ICONS } from '../../constants';
+import { ICONS } from '../constants';
 
 interface CustomersViewProps {
     customers: Customer[];
@@ -35,7 +35,7 @@ const CustomersView: React.FC<CustomersViewProps> = ({ customers, sales, onAddCu
                 totalSpent,
                 lastPurchase,
             };
-        }).filter(c => 
+        }).filter(c =>
             c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             c.phone.toLowerCase().includes(searchTerm.toLowerCase()) ||
             c.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -55,33 +55,33 @@ const CustomersView: React.FC<CustomersViewProps> = ({ customers, sales, onAddCu
         }
         setIsModalOpen(false);
     };
-    
+
     if (selectedCustomer) {
         const fullCustomerData = customerData.find(c => c.id === selectedCustomer.id);
         return (
-            <CustomerDetailView 
-                customer={fullCustomerData || selectedCustomer} 
+            <CustomerDetailView
+                customer={fullCustomerData || selectedCustomer}
                 sales={sales.filter(s => s.customerId === selectedCustomer.id)}
                 onBack={() => setSelectedCustomer(null)}
             />
         );
     }
-    
+
     return (
         <div className="p-4 md:p-8 h-full overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold text-slate-800">Customer Management</h1>
-                 <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
                     <motion.button
                         onClick={onBulkMessage}
                         whileTap={{ scale: 0.95 }}
                         className="bg-[#25D366] text-white font-semibold px-4 py-2 rounded-lg hover:bg-[#1EAE53] transition-colors shadow-sm flex items-center"
                     >
-                         <div className="w-5 h-5 mr-2">{ICONS.whatsapp}</div>
+                        <div className="w-5 h-5 mr-2">{ICONS.whatsapp}</div>
                         Bulk WhatsApp
                     </motion.button>
                     {canManage && (
-                        <motion.button 
+                        <motion.button
                             onClick={() => handleOpenModal()}
                             whileTap={{ scale: 0.95 }}
                             className="bg-emerald-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors shadow-md flex items-center"
@@ -93,7 +93,7 @@ const CustomersView: React.FC<CustomersViewProps> = ({ customers, sales, onAddCu
                 </div>
             </div>
             <div className="mb-4">
-                 <input
+                <input
                     type="text"
                     placeholder="Search customers by name, phone, or email..."
                     className="w-full max-w-sm px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -139,7 +139,7 @@ const CustomersView: React.FC<CustomersViewProps> = ({ customers, sales, onAddCu
             </div>
             <AnimatePresence>
                 {isModalOpen && (
-                    <CustomerModal 
+                    <CustomerModal
                         onClose={() => setIsModalOpen(false)}
                         onSave={handleSaveCustomer}
                         customer={editingCustomer}

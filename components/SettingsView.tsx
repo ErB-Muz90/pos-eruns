@@ -15,7 +15,7 @@ import HardwareSettings from './settings/HardwareSettings';
 import SmsSettings from './settings/SmsSettings';
 import WhatsAppSettings from './settings/WhatsAppSettings';
 import MpesaSettings from './settings/MpesaSettings';
-import { ICONS } from '../../constants';
+import { ICONS } from '../constants';
 
 interface SettingsViewProps {
     settings: Settings;
@@ -132,7 +132,7 @@ const SettingsView: React.FC<SettingsViewProps> = (props) => {
             icon: ICONS.email,
             component: <EmailSettings settings={props.settings} onUpdateSettings={props.onUpdateSettings} showToast={props.showToast} />,
         },
-         'sms-settings': {
+        'sms-settings': {
             title: 'SMS Gateway',
             description: "Configure services like Africa's Talking to send SMS.",
             icon: ICONS.sms,
@@ -197,7 +197,7 @@ const SettingsView: React.FC<SettingsViewProps> = (props) => {
                 <h1 className="text-3xl font-bold text-slate-800">Admin Settings</h1>
                 <p className="mt-1 text-slate-500">Manage your system configurations and security settings.</p>
             </div>
-            
+
             <div className="space-y-8">
                 {categories.map(category => (
                     <div key={category.title}>
